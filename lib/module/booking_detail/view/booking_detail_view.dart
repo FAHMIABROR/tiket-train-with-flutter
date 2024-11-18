@@ -14,10 +14,11 @@ class BookingDetailView extends StatefulWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Ticket",
+          "Your Ticket",
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
         ),
         actions: [
@@ -27,7 +28,8 @@ class BookingDetailView extends StatefulWidget {
               onPressed: () {},
               icon: const Icon(
                 Icons.file_upload_outlined,
-                size: 30.0,
+                size: 28.0,
+                color: Colors.white,
               ),
             ),
           ),
@@ -38,301 +40,93 @@ class BookingDetailView extends StatefulWidget {
           icon: const Icon(
             Icons.arrow_back_ios,
             size: 24.0,
+            color: Colors.white,
           ),
         ),
+        backgroundColor: const Color(0xff2B3A4E),
       ),
-      body: Container(
-        padding: const EdgeInsets.all(20.0),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(
-                      16.0,
+                decoration: BoxDecoration(
+                  color: const Color(0xffF5F5F5),
+                  borderRadius: BorderRadius.circular(20.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 15.0,
+                      spreadRadius: 2.0,
                     ),
-                  ),
+                  ],
                 ),
                 child: Stack(
                   children: [
-                    const Positioned(
-                      top: 64,
-                      left: -18,
+                    Positioned(
+                      top: 60,
+                      left: -20,
                       child: CircleAvatar(
                         radius: 18,
-                        backgroundColor: Color(0xff393e48),
+                        backgroundColor: Color(0xffC0C9D2).withOpacity(0.4),
                       ),
                     ),
-                    const Positioned(
-                      top: 64,
-                      right: -18,
+                    Positioned(
+                      top: 60,
+                      right: -20,
                       child: CircleAvatar(
                         radius: 18,
-                        backgroundColor: Color(0xff393e48),
+                        backgroundColor: Color(0xffC0C9D2).withOpacity(0.4),
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       top: 80,
                       left: 18,
                       right: 18,
-                      child: Separator(),
+                      child: const Separator(),
                     ),
-                    const Positioned(
-                      bottom: 135,
-                      left: -18,
+                    Positioned(
+                      bottom: 130,
+                      left: -20,
                       child: CircleAvatar(
                         radius: 18,
-                        backgroundColor: Color(0xff393e48),
+                        backgroundColor: Color(0xffC0C9D2).withOpacity(0.4),
                       ),
                     ),
-                    const Positioned(
-                      bottom: 135,
-                      right: -18,
+                    Positioned(
+                      bottom: 130,
+                      right: -20,
                       child: CircleAvatar(
                         radius: 18,
-                        backgroundColor: Color(0xff393e48),
+                        backgroundColor: Color(0xffC0C9D2).withOpacity(0.4),
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       bottom: 150,
                       left: 18,
                       right: 18,
-                      child: Separator(),
+                      child: const Separator(),
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      margin: const EdgeInsets.all(30.0),
-                      child: const Column(
+                      margin: const EdgeInsets.all(16.0),
+                      child: Column(
                         children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "Executive",
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    color: Color(0xff393e48),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "18 Juni 2013",
-                                style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Color(0xff393e48),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 60.0,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "From",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Pati",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "To",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Kudus",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Depature",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "08:00 AM",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "Arrival",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "09:00 AM",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Class",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Executive",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "Seat",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Executive, Seat 12",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Passanger",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "1 Adult",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "Baggage",
-                                      style: TextStyle(
-                                        color: Color(0xffaeb2b4),
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                    Text(
-                                      "15 KG",
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Color(0xff393e48),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                          _buildRow("Executive Class", "18 June 2013"),
+                          SizedBox(height: 24.0),
+                          _buildRouteInfo("From", "Pati", "To", "Kudus"),
+                          SizedBox(height: 24.0),
+                          _buildRouteInfo(
+                              "Departure", "08:00 AM", "Arrival", "09:00 AM"),
+                          SizedBox(height: 24.0),
+                          _buildRouteInfo(
+                              "Class", "Executive", "Seat", "Seat 12"),
+                          SizedBox(height: 24.0),
+                          _buildRouteInfo(
+                              "Passenger", "1 Adult", "Baggage", "15 KG"),
                         ],
                       ),
                     ),
@@ -354,25 +148,25 @@ class BookingDetailView extends StatefulWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30.0,
-            ),
+            const SizedBox(height: 30.0),
             SizedBox(
               height: 48,
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xfffdc620),
+                  backgroundColor: const Color(0xff546E7A),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
+                  elevation: 5,
                 ),
                 onPressed: () => Get.to(const SeatPickerView()),
                 child: const Text(
                   "Download Ticket",
                   style: TextStyle(
-                    color: Color(0xff383d47),
+                    color: Colors.white,
                     fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -380,6 +174,81 @@ class BookingDetailView extends StatefulWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Row _buildRouteInfo(String leftLabel, String leftValue, String rightLabel,
+      String rightValue) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                leftLabel,
+                style: TextStyle(
+                  color: Color(0xffA1A1A1),
+                  fontSize: 14.0,
+                ),
+              ),
+              Text(
+                leftValue,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Color(0xff3A3A3A),
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                rightLabel,
+                style: TextStyle(
+                  color: Color(0xffA1A1A1),
+                  fontSize: 14.0,
+                ),
+              ),
+              Text(
+                rightValue,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Color(0xff3A3A3A),
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Row _buildRow(String left, String right) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          left,
+          style: TextStyle(
+            fontSize: 18.0,
+            color: Color(0xff3A3A3A),
+          ),
+        ),
+        Text(
+          right,
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+            color: Color(0xff3A3A3A),
+          ),
+        ),
+      ],
     );
   }
 

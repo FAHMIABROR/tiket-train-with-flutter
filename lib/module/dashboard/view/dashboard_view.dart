@@ -10,16 +10,57 @@ import '../controller/dashboard_controller.dart';
 class DashboardView extends StatefulWidget {
   const DashboardView({Key? key}) : super(key: key);
 
-  Widget build(context, DashboardController controller) {
-    controller.view = this;
+  @override
+  State<DashboardView> createState() => DashboardController();
 
+  build(BuildContext context, DashboardController dashboardController) {}
+}
+
+class DashboardController extends State<DashboardView> {
+  DashboardView? view;
+  int qtyAdult = 0;
+  int qtyChild = 0;
+
+  void incrementAdult() {
+    setState(() {
+      qtyAdult++;
+    });
+  }
+
+  void decrementAdult() {
+    if (qtyAdult > 0) {
+      setState(() {
+        qtyAdult--;
+      });
+    }
+  }
+
+  void incrementChild() {
+    setState(() {
+      qtyChild++;
+    });
+  }
+
+  void decrementChild() {
+    if (qtyChild > 0) {
+      setState(() {
+        qtyChild--;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
+        backgroundColor: const Color(0xFF333A5A),
         title: const Text(
           "Hello, Samuel",
           style: TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         actions: const [
@@ -32,14 +73,17 @@ class DashboardView extends StatefulWidget {
                   color: Colors.white,
                 ),
               ),
-              child: Icon(Icons.notifications_outlined),
+              child: Icon(
+                Icons.notifications_outlined,
+                color: Colors.white,
+              ),
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,76 +92,54 @@ class DashboardView extends StatefulWidget {
                 style: TextStyle(
                   fontSize: 26.0,
                   fontWeight: FontWeight.bold,
+                  color: Color(0xFF333A5A),
                 ),
               ),
-              const SizedBox(
-                height: 16.0,
-              ),
+              const SizedBox(height: 16.0),
               Theme(
                 data: ThemeData.light(),
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.all(15.0),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12.0),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 6.0,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       QCategoryPicker(
                         items: const [
-                          {
-                            "label": "One Way",
-                            "value": "1",
-                          },
-                          {
-                            "label": "Round - Trip",
-                            "value": "2",
-                          },
-                          {
-                            "label": "Multiple City",
-                            "value": "3",
-                          },
+                          {"label": "One Way", "value": "1"},
+                          {"label": "Round - Trip", "value": "2"},
+                          {"label": "Multiple City", "value": "3"},
                         ],
-                        // validator: Validator.required,
                         value: "1",
                         onChanged: (index, label, value, item) {},
                       ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
+                      const SizedBox(height: 15.0),
                       QDropdownField(
                         label: "From",
                         value: "Pati",
-                        // validator: Validator.required,
                         items: const [
-                          {
-                            "label": "Pati",
-                            "value": "Pati",
-                          },
-                          {
-                            "label": "Kudus",
-                            "value": "Kudus",
-                          }
+                          {"label": "Pati", "value": "Pati"},
+                          {"label": "Kudus", "value": "Kudus"}
                         ],
                         onChanged: (value, label) {},
                       ),
                       QDropdownField(
                         label: "To",
                         value: "Kudus",
-                        // validator: Validator.required,
                         items: const [
-                          {
-                            "label": "Pati",
-                            "value": "Pati",
-                          },
-                          {
-                            "label": "Kudus",
-                            "value": "Kudus",
-                          }
+                          {"label": "Pati", "value": "Pati"},
+                          {"label": "Kudus", "value": "Kudus"}
                         ],
                         onChanged: (value, label) {},
                       ),
@@ -127,26 +149,22 @@ class DashboardView extends StatefulWidget {
                             child: QDatePicker(
                               label: "Depart",
                               value: DateTime.now(),
-                              // validator: Validator.required,
                               onChanged: (value) {},
                             ),
                           ),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
+                          const SizedBox(width: 20.0),
                           const Text(
                             "-",
                             style: TextStyle(
-                                fontSize: 22.0, color: Color(0xff393e48)),
+                              fontSize: 22.0,
+                              color: Color(0xFF333A5A),
+                            ),
                           ),
-                          const SizedBox(
-                            width: 20.0,
-                          ),
+                          const SizedBox(width: 20.0),
                           Expanded(
                             child: QDatePicker(
                               label: "Return",
                               value: DateTime.now(),
-                              // validator: Validator.required,
                               onChanged: (value) {},
                             ),
                           ),
@@ -156,53 +174,53 @@ class DashboardView extends StatefulWidget {
                         "Passengers",
                         style: TextStyle(
                           fontSize: 14.0,
-                          color: Color(0xff393e48),
+                          color: Color(0xFF333A5A),
                         ),
                       ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
+                      const SizedBox(height: 8.0),
                       Row(
                         children: [
                           Row(
                             children: [
                               InkWell(
-                                onTap: () => controller.decrementAdult(),
+                                onTap: decrementAdult,
                                 child: Container(
-                                  margin: const EdgeInsets.only(
-                                    right: 20.0,
-                                  ),
+                                  padding: const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
-                                    color: (controller.qtyAdult == 0)
-                                        ? const Color(0xffdedede)
-                                        : const Color(0xfffdc620),
+                                    color: (qtyAdult == 0)
+                                        ? const Color(0xFFE0E0E0)
+                                        : const Color(0xFF333A5A),
+                                    borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   child: const Icon(
                                     Icons.remove,
                                     size: 20.0,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
+                              const SizedBox(width: 10.0),
                               Text(
-                                "${controller.qtyAdult} Adult",
+                                "$qtyAdult Adult",
                                 style: const TextStyle(
                                   fontSize: 16.0,
-                                  color: Color(0xff393e48),
                                   fontWeight: FontWeight.bold,
+                                  color: Color(0xFF333A5A),
                                 ),
                               ),
+                              const SizedBox(width: 10.0),
                               InkWell(
-                                onTap: () => controller.incrementAdult(),
+                                onTap: incrementAdult,
                                 child: Container(
-                                  margin: const EdgeInsets.only(
-                                    left: 20.0,
-                                  ),
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xfffdc620),
+                                  padding: const EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF333A5A),
+                                    borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   child: const Icon(
                                     Icons.add,
                                     size: 20.0,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
@@ -212,42 +230,44 @@ class DashboardView extends StatefulWidget {
                           Row(
                             children: [
                               InkWell(
-                                onTap: () => controller.decrementChild(),
+                                onTap: decrementChild,
                                 child: Container(
-                                  margin: const EdgeInsets.only(
-                                    right: 20.0,
-                                  ),
+                                  padding: const EdgeInsets.all(5.0),
                                   decoration: BoxDecoration(
-                                    color: (controller.qtyChild == 0)
-                                        ? const Color(0xffdedede)
-                                        : const Color(0xfffdc620),
+                                    color: (qtyChild == 0)
+                                        ? const Color(0xFFE0E0E0)
+                                        : const Color(0xFF333A5A),
+                                    borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   child: const Icon(
                                     Icons.remove,
                                     size: 20.0,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
+                              const SizedBox(width: 10.0),
                               Text(
-                                "${controller.qtyChild} Child",
+                                "$qtyChild Child",
                                 style: const TextStyle(
                                   fontSize: 16.0,
-                                  color: Color(0xff393e48),
                                   fontWeight: FontWeight.bold,
+                                  color: Color(0xFF333A5A),
                                 ),
                               ),
+                              const SizedBox(width: 10.0),
                               InkWell(
-                                onTap: () => controller.incrementChild(),
+                                onTap: incrementChild,
                                 child: Container(
-                                  margin: const EdgeInsets.only(
-                                    left: 20.0,
-                                  ),
-                                  decoration: const BoxDecoration(
-                                    color: Color(0xfffdc620),
+                                  padding: const EdgeInsets.all(5.0),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFF333A5A),
+                                    borderRadius: BorderRadius.circular(5.0),
                                   ),
                                   child: const Icon(
                                     Icons.add,
                                     size: 20.0,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
@@ -255,47 +275,33 @@ class DashboardView extends StatefulWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
+                      const SizedBox(height: 10.0),
                       QDropdownField(
                         label: "Train Classes",
                         value: "Executive",
-                        // validator: Validator.required,
                         items: const [
-                          {
-                            "label": "Executive",
-                            "value": "Executive",
-                          },
-                          {
-                            "label": "Business",
-                            "value": "Business",
-                          },
-                          {
-                            "label": "Economy",
-                            "value": "Economy",
-                          }
+                          {"label": "Executive", "value": "Executive"},
+                          {"label": "Business", "value": "Business"},
+                          {"label": "Economy", "value": "Economy"}
                         ],
                         onChanged: (value, label) {},
                       ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
+                      const SizedBox(height: 20.0),
                       SizedBox(
                         height: 48,
                         width: MediaQuery.of(context).size.width,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xfffdc620),
+                            backgroundColor: const Color(0xFF333A5A),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                           ),
-                          onPressed: () => Get.to(const SeatPickerView()),
+                          onPressed: () => Get.to(SeatPickerView()),
                           child: const Text(
                             "Continue",
                             style: TextStyle(
-                              color: Color(0xff383d47),
+                              color: Colors.white,
                               fontSize: 16,
                             ),
                           ),
@@ -311,7 +317,4 @@ class DashboardView extends StatefulWidget {
       ),
     );
   }
-
-  @override
-  State<DashboardView> createState() => DashboardController();
 }

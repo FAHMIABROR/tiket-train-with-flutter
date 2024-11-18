@@ -40,7 +40,7 @@ class SeatPickerView extends StatefulWidget {
                   Icon(
                     Icons.square,
                     size: 24.0,
-                    color: Color(0xff1aa84b),
+                    color: Color(0xFF4CAF50), // Softer green for "Available"
                   ),
                   SizedBox(
                     width: 5.0,
@@ -57,7 +57,7 @@ class SeatPickerView extends StatefulWidget {
                   Icon(
                     Icons.square,
                     size: 24.0,
-                    color: Color(0xfff8c321),
+                    color: Color(0xFFFFC107), // Softer yellow for "Selected"
                   ),
                   SizedBox(
                     width: 5.0,
@@ -74,7 +74,7 @@ class SeatPickerView extends StatefulWidget {
                   Icon(
                     Icons.square,
                     size: 24.0,
-                    color: Colors.white,
+                    color: Color(0xFFBDBDBD), // Light grey for "Unavailable"
                   ),
                   SizedBox(
                     width: 5.0,
@@ -115,7 +115,7 @@ class SeatPickerView extends StatefulWidget {
                               child: Container(
                                 height: 60,
                                 decoration: const BoxDecoration(
-                                  color: Color(0xffd9d9d9),
+                                  color: Color(0xFFBDBDBD),
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.elliptical(200.0, 300.0),
                                     topRight: Radius.elliptical(200.0, 300.0),
@@ -138,7 +138,7 @@ class SeatPickerView extends StatefulWidget {
                               height: 30,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xfffdc620),
+                                  backgroundColor: const Color(0xFF1E88E5),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
@@ -148,7 +148,7 @@ class SeatPickerView extends StatefulWidget {
                                 child: const Text(
                                   "Executive",
                                   style: TextStyle(
-                                    color: Color(0xff383d47),
+                                    color: Colors.white,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -178,11 +178,11 @@ class SeatPickerView extends StatefulWidget {
                                           .selectedSeats
                                           .contains(index);
 
-                                      var color = const Color(0xff1ba44a);
+                                      var color = const Color(0xFF4CAF50);
                                       if (selectedSeatByOther) {
-                                        color = const Color(0xffe4e4e4);
+                                        color = const Color(0xFFBDBDBD);
                                       } else if (selected) {
-                                        color = const Color(0xfffdc620);
+                                        color = const Color(0xFFFFC107);
                                       }
 
                                       return InkWell(
@@ -230,55 +230,6 @@ class SeatPickerView extends StatefulWidget {
                       ),
                     ],
                   ),
-                  // const Spacer(),
-                  // RotatedBox(
-                  //   quarterTurns: 1,
-                  //   child: SizedBox(
-                  //     height: 10,
-                  //     child: Stack(
-                  //       children: [
-                  //         Center(
-                  //           child: Container(
-                  //             height: 4,
-                  //             width: 600,
-                  //             decoration: const BoxDecoration(
-                  //               color: Color(0xffdedede),
-                  //             ),
-                  //           ),
-                  //         ),
-                  //         Container(
-                  //           margin: const EdgeInsets.only(
-                  //             left: 90.0,
-                  //           ),
-                  //           child: Center(
-                  //             child: QCategoryPicker(
-                  //               items: const [
-                  //                 {
-                  //                   "label": "Executive",
-                  //                   "value": "1",
-                  //                 },
-                  //                 {
-                  //                   "label": "Business",
-                  //                   "value": "2",
-                  //                 },
-                  //                 {
-                  //                   "label": "Economy",
-                  //                   "value": "3",
-                  //                 },
-                  //               ],
-                  //               // validator: Validator.required,
-                  //               value: "1",
-                  //               onChanged: (index, label, value, item) {},
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  // const SizedBox(
-                  //   width: 25.0,
-                  // ),
                 ],
               ),
             ],
@@ -295,7 +246,7 @@ class SeatPickerView extends StatefulWidget {
             decoration: const BoxDecoration(
               border: Border(
                 top: BorderSide(
-                  color: Color(0xfff8c321),
+                  color: Color(0xFFFFC107),
                   width: 4.0,
                 ),
               ),
@@ -309,7 +260,7 @@ class SeatPickerView extends StatefulWidget {
                       "Selected Seat",
                       style: TextStyle(
                         fontSize: 14.0,
-                        color: Color(0xffd9d9d9),
+                        color: Color(0xFFBDBDBD),
                       ),
                     ),
                     Text(
@@ -331,11 +282,11 @@ class SeatPickerView extends StatefulWidget {
                       "Price",
                       style: TextStyle(
                         fontSize: 14.0,
-                        color: Color(0xffd9d9d9),
+                        color: Color(0xFFBDBDBD),
                       ),
                     ),
                     Text(
-                      "\$64.00",
+                      "\$104.00",
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
@@ -351,7 +302,7 @@ class SeatPickerView extends StatefulWidget {
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xfffdc620),
+                      backgroundColor: const Color(0xFF5E35B1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -360,7 +311,7 @@ class SeatPickerView extends StatefulWidget {
                     child: const Text(
                       "Confirm Seat",
                       style: TextStyle(
-                        color: Color(0xff383d47),
+                        color: Colors.white,
                         fontSize: 16,
                       ),
                     ),

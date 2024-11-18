@@ -17,7 +17,7 @@ class QDropdownField extends StatefulWidget {
     this.value,
     this.validator,
     this.emptyMode = true,
-    this.hint,
+    this.hint, required Color dropdownColor, required Color textColor,
   }) : super(key: key);
 
   @override
@@ -44,9 +44,7 @@ class _QDropdownFieldState extends State<QDropdownField> {
       };
     }
 
-    for (var item in widget.items) {
-      items.add(item);
-    }
+    items.addAll(widget.items);
 
     var values = widget.items.where((i) => i["value"] == widget.value).toList();
     if (values.isNotEmpty) {
@@ -54,24 +52,17 @@ class _QDropdownFieldState extends State<QDropdownField> {
     }
   }
 
-  setAllItemsToFalse() {
-    for (var item in items) {}
-  }
-
   Map<String, dynamic>? get currentValue {
-    if (widget.emptyMode) {
-      var foundItems =
-          items.where((i) => i["value"] == selectedValue?["value"]).toList();
-      if (foundItems.isNotEmpty) {
-        return foundItems.first;
-      }
-
-      return {
-        "label": "-",
-        "value": "-",
-      };
+    var foundItems =
+        items.where((i) => i["value"] == selectedValue?["value"]).toList();
+    if (foundItems.isNotEmpty) {
+      return foundItems.first;
     }
-    return items.first;
+
+    // Default value jika tidak ditemukan
+    return widget.emptyMode
+        ? {"label": "-", "value": "-"}
+        : (items.isNotEmpty ? items.first : null);
   }
 
   @override
@@ -112,54 +103,43 @@ class _QDropdownFieldState extends State<QDropdownField> {
                     child: Icon(
                       Icons.arrow_drop_down_outlined,
                       size: 24.0,
-                      color: Theme.of(context).textTheme.bodyLarge!.color,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
                     ),
                   ),
                   iconSize: 16,
                   elevation: 16,
                   style: TextStyle(
-                    fontSize: Theme.of(context).textTheme.bodyMedium!.fontSize,
+                    fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                     fontFamily:
-                        Theme.of(context).textTheme.bodyMedium!.fontFamily,
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
+                        Theme.of(context).textTheme.bodyMedium?.fontFamily,
+                    color: Theme.of(context).textTheme.bodyMedium?.color ??
+                        Colors.black,
                   ),
                   underline: Container(
                     height: 0,
                     color: Colors.grey[300],
                   ),
                   onChanged: (Map<String, dynamic>? newValue) {
-                    if (widget.emptyMode && newValue?["value"] == "-") {
-                      selectedValue = {
+                    setState(() {
+                      selectedValue = newValue ?? {
                         "label": "-",
                         "value": "-",
                       };
-                    } else {
-                      selectedValue = newValue!;
-                    }
-                    setState(() {});
+                    });
 
-                    var label = selectedValue!["label"];
-                    var value = selectedValue!["value"];
+                    var label = selectedValue?["label"];
+                    var value = selectedValue?["value"];
                     widget.onChanged(value, label);
                   },
-                  items: List.generate(
-                    items.length,
-                    (index) {
-                      var item = items[index];
-                      return DropdownMenuItem<Map<String, dynamic>>(
-                        value: item,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 0.0,
-                            vertical: 0.0,
-                          ),
-                          child: Text(
-                            item["label"],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                  items: items.map((item) {
+                    return DropdownMenuItem<Map<String, dynamic>>(
+                      value: item,
+                      child: Text(
+                        item["label"],
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
             ),
